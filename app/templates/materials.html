@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}本班材料 · CampusClaw 教研工作台{% endblock %}
+{% block content %}
+<section class="workspace-heading">
+  <div>
+    <div class="workspace-kicker"><span class="kicker-line"></span>{{ user['class_id'] }} 班 · 教研空间</div>
+    <h1>把教学资料，<span>整理成自己的知识库。</span></h1>
+    <p>这里展示你所在班级的教研材料。每个账号只会看到自己班级的内容。</p>
+  </div>
+  <div class="workspace-stamp"><span>CLASS</span><strong>{{ user['class_id'] }}</strong><small>专属空间</small></div>
+</section>
+
+{% if user['role'] == 'teacher' %}
+<section class="upload-panel" aria-label="教师材料上传">
+  <div class="upload-panel-icon" aria-hidden="true">＋</div>
+  <div class="upload-copy"><strong>添加一份教研材料</strong><span id="upload-help">只支持 .txt / .md 纯文本，单个请求不超过 5 MB；PDF、Word、表格和图片暂不支持，改扩展名也不能转换格式。</span></div>
+  <form class="upload-form" method="post" action="{{ url_for('upload_material') }}" enctype="multipart/form-data">
+    <label class="file-picker">选择文件<input type="file" name="file" accept=".txt,.md" aria-describedby="upload-help" required></label>
+    <button class="upload-submit" type="submit">上传并入库 <span aria-hidden="true">↗</span></button>
+  </form>
+</section>
+{% endif %}
+
+<section class="search-panel" aria-labelledby="search-title">
+  <div class="search-copy"><span class="section-kicker">KNOWLEDGE SEARCH</span><h2 id="search-title">在本班知识库里找材料</h2><p>输入关键词，结果只来自当前登录班级，并显示可核对的来源摘录。</p></div>
+  <form id="knowledge-search-form" class="search-form" role="search">
+    <label class="sr-only" for="knowledge-query">搜索关键词</label>
+    <input id="knowledge-query" name="q" type="search" placeholder="例如：课堂观察" autocomplete="off" required>
+    <button type="submit">搜索</button>
+  </form>
+  <div id="search-status" class="search-status" role="status" aria-live="polite"></div>
+  <div id="search-results" class="search-results" aria-live="polite"></div>
+</section>
+
+<section class="materials-section" aria-labelledby="materials-title">
+  <div class="section-heading"><div><span class="section-kicker">YOUR CLASS LIBRARY</span><h2 id="materials-title">班级材料 <span class="count-pill">{{ materials|length }}</span></h2></div><span class="section-caption"><span class="live-dot"></span>仅对本班成员可见</span></div>
+  <div class="materials-grid">
+    {% for item in materials %}
+      <a class="material-card" href="{{ url_for('material_detail', material_id=item['id']) }}">
+        <div class="material-card-top"><span class="document-icon" aria-hidden="true"><i></i><i></i><i></i></span><span class="material-type">{{ item['filename'].rsplit('.', 1)[-1]|upper }}</span></div>
+        <h3>{{ item['title'] }}</h3>
+        <div class="material-card-bottom"><span>{{ item['filename'] }}</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+      </a>
+    {% else %}
+      <div class="empty-state"><div class="empty-illustration" aria-hidden="true"><span></span><span></span><span></span></div><strong>这里还没有材料</strong><p>{% if user['role'] == 'teacher' %}上传第一份讲义或教研笔记，开始建立班级知识库。{% else %}教师上传本班材料后，会显示在这里。{% endif %}</p></div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='search.js') }}" defer></script>{% endblock %}

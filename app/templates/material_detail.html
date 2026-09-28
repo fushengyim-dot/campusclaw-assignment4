@@ -1,0 +1,2 @@
+{% extends 'base.html' %}{% block title %}{{ material['title'] }} · CampusClaw{% endblock %}
+{% block content %}<a class="back" href="{{ url_for('materials') }}">← 返回材料列表</a><article class="detail"><div class="eyebrow">来源：{{ material['filename'] }}</div><h1>{{ material['title'] }}</h1><p><a class="button" href="{{ url_for('download_material', material_id=material['id']) }}">下载原始文件</a></p><pre>{{ material['content'] }}</pre></article>{% endblock %}

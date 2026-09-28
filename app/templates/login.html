@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}登录 · CampusClaw 教研工作台{% endblock %}
+{% block content %}
+<section class="auth-layout" aria-labelledby="welcome-title">
+  <div class="auth-story">
+    <div class="story-kicker"><span class="sparkle-mark" aria-hidden="true">✳</span> 为真实教研场景而设计</div>
+    <h1 id="welcome-title">让好教学，<br><span>被看见、被延续。</span></h1>
+    <p class="story-intro">从一份讲义开始，把班级里的材料、经验与问题，慢慢沉淀成大家都能用的教研知识。</p>
+    <div class="story-points">
+      <div class="story-point"><span class="point-icon point-icon-green" aria-hidden="true">01</span><div><strong>资料回到课堂</strong><span>班级讲义和教研材料，统一整理与检索。</span></div></div>
+      <div class="story-point"><span class="point-icon point-icon-blue" aria-hidden="true">02</span><div><strong>协作有边界</strong><span>教师与学生分角色使用，资料按班级隔离。</span></div></div>
+      <div class="story-point"><span class="point-icon point-icon-gold" aria-hidden="true">03</span><div><strong>每一步看得见</strong><span>先从可核验的材料入库与权限控制开始。</span></div></div>
+    </div>
+    <div class="story-note"><span class="note-orbit" aria-hidden="true"></span><div><span class="note-label">A SMALL STEP, A BETTER CLASSROOM</span><strong>让教研经验，留在校园里。</strong></div><span class="note-arrow" aria-hidden="true">↗</span></div>
+  </div>
+
+  <div class="login-panel">
+    <div class="login-panel-top"><span class="login-icon" aria-hidden="true">↗</span><span>欢迎回来</span></div>
+    <h2>登录你的空间</h2>
+    <p class="login-subtitle">使用本地环境配置的账号进入 CampusClaw</p>
+
+    <form method="post" action="{{ url_for('login') }}" class="login-form">
+      <input type="hidden" name="next" value="{{ request.args.get('next', '') }}">
+      <label for="username">账号</label>
+      <div class="input-wrap"><span class="input-icon" aria-hidden="true">◎</span><input id="username" name="username" autocomplete="username" placeholder="请输入你的账号" required autofocus></div>
+      <div class="password-label"><label for="password">密码</label><span>账号信息仅用于本机演示</span></div>
+      <div class="input-wrap"><span class="input-icon lock-icon" aria-hidden="true">⌑</span><input id="password" type="password" name="password" autocomplete="current-password" placeholder="请输入密码" required></div>
+      <button class="login-submit" type="submit"><span>进入教研空间</span><span aria-hidden="true">→</span></button>
+    </form>
+
+    <div class="demo-access">
+      <div class="demo-heading"><span>快速体验</span><span>演示账号</span></div>
+      <div class="demo-account"><span class="demo-role teacher-role">教师</span><code>teacher_a</code><span class="demo-divider">/</span><span>密码由本地环境变量配置</span></div>
+      <div class="demo-account"><span class="demo-role student-role">学生</span><code>student_a1</code><span class="demo-divider">/</span><span>密码由本地环境变量配置</span></div>
+      <p>账号仅用于本机体验，请勿在真实环境中使用。</p>
+    </div>
+    <div class="login-security"><span class="security-shield" aria-hidden="true">✓</span><span>班级资料按账号权限隔离</span><span class="security-separator">·</span><span>访问权限由服务端校验</span></div>
+  </div>
+</section>
+{% endblock %}

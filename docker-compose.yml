@@ -1,0 +1,24 @@
+services:
+  api:
+    build: .
+    environment:
+      SECRET_KEY: ${SECRET_KEY:?Set SECRET_KEY in .env or the shell before starting}
+      PORT: 8080
+    volumes:
+      - ./data:/app/data
+      - ./uploads:/app/uploads
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/health')"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  nginx:
+    build:
+      context: ./deploy
+      dockerfile: Dockerfile
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:${WEB_PORT:-8088}:8080"
