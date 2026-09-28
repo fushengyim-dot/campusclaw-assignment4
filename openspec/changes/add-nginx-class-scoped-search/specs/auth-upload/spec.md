@@ -16,7 +16,7 @@ Compose 部署 MUST 通过 NGINX 暴露网页入口，MUST NOT 将 Flask API 服
 
 ### Requirement: 限定班级范围的知识检索 API
 
-已登录用户 MUST 能够通过 `GET /api/knowledge/search?q=...` 搜索已保存的知识内容。服务器 MUST 从登录会话中取得班级范围，同时按该范围过滤知识记录和材料记录，并返回包括材料 ID、标题和文件名在内的来源信息。当前实现 MAY 使用有数量上限的 SQLite 文本匹配，MUST NOT 将其描述为语义向量检索。
+已登录用户 MUST 能够通过 `GET /api/knowledge/search?q=...` 搜索已保存的知识内容。服务器 MUST 从登录会话中取得班级范围，同时按该范围过滤知识记录和材料记录，并返回包括材料 ID、标题和文件名在内的来源信息。当前实现 MAY 使用有数量上限的 SQLite 文本匹配。
 
 #### Scenario: 已登录用户得到本班检索结果
 
