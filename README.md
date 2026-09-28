@@ -4,6 +4,17 @@
 
 本迭代不包含智能问答、技能路由、MCP、作业提交与批改；这些属于后续 change。当前提供一个按登录用户班级隔离的基础知识检索 API。
 
+## 第四次课：本次变更
+
+本次变更实现了限定班级范围的知识库文本检索，并通过材料名称、来源文件名、材料 ID 和原文摘录支持内容溯源。检索范围来自登录会话中的班级信息，不信任浏览器提交的班级编号；当前使用 SQLite 文本匹配，未引入向量数据库。
+
+- [变更提案](openspec/changes/add-nginx-class-scoped-search/proposal.md)
+- [设计说明](openspec/changes/add-nginx-class-scoped-search/design.md)
+- [OpenSpec 需求与验收场景](openspec/changes/add-nginx-class-scoped-search/specs/auth-upload/spec.md)
+- [任务清单](openspec/changes/add-nginx-class-scoped-search/tasks.md)
+- [检索 API 实现](app/__init__.py#L176)
+- [网页搜索实现](app/static/search.js#L1)
+
 ## 启动
 
 ```powershell
