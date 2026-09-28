@@ -1,5 +1,5 @@
-# Proposal: add NGINX entry and class-scoped knowledge search
+# 变更提案：增加 NGINX 入口和限定班级范围的知识检索
 
-Keep Flask and SQLite for the current low-cost deployment, put NGINX in front of the API, and add a retrieval endpoint that derives the class scope from the authenticated session.
+在保持低成本部署的前提下，继续使用 Flask 和 SQLite，在 API 前增加 NGINX 入口，并增加一个根据登录会话取得班级范围的知识检索接口。
 
-This change does not introduce MySQL, a vector database, semantic embeddings, or AI answers.
+本次变更不引入 MySQL、向量数据库、语义向量模型或 AI 问答。

@@ -1,11 +1,11 @@
-# Tasks
+# 任务清单
 
-- [x] Add NGINX service and remove API host-port exposure.
-- [x] Add `.dockerignore` for databases, uploads, environment files, and local artifacts.
-- [x] Add class-scoped authenticated knowledge search API with source metadata.
-- [x] Add a browser search form that calls the API and renders source excerpts.
-- [x] Move first-start seed passwords to environment configuration.
-- [x] Add API isolation tests.
-- [x] Build the API and NGINX images and verify both services are healthy.
-- [x] Verify `/health` through NGINX and verify unauthenticated/authenticated API behavior.
-- [x] Run the repository's OpenSpec validator when the validator is available.
+- [x] 增加 NGINX 服务，并取消 API 的宿主机端口暴露。
+- [x] 增加 `.dockerignore`，排除数据库、上传材料、环境文件和本地临时产物。
+- [x] 增加带来源信息的限定班级范围知识检索 API。
+- [x] 增加网页搜索框，调用 API 并显示来源摘录。
+- [x] 将首次启动的种子账号密码改为通过环境变量配置。
+- [x] 增加 API 班级隔离测试。
+- [x] 构建 API 和 NGINX 镜像，并确认两个服务健康运行。
+- [x] 通过 NGINX 验证 `/health`，并验证未登录和已登录 API 行为。
+- [x] 在校验器可用后运行仓库的 OpenSpec 校验。
